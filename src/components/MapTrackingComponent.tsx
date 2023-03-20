@@ -2,7 +2,7 @@ import { GoogleMap } from "@capacitor/google-maps";
 import { useEffect, useRef, useState } from "react";
 import { Geolocation, PositionOptions, Position } from "@capacitor/geolocation";
 
-const MyMap: React.FC = () => {
+const MapTrackingComponent: React.FC = () => {
   const mapRef = useRef<HTMLElement>();
   const [position, setPosition] = useState<Position | null>(null);
   const [map, setMap] = useState<GoogleMap | null>(null);
@@ -75,4 +75,4 @@ const MyMap: React.FC = () => {
   );
 };
 
-export default MyMap;
+export default MapTrackingComponent;

@@ -8,7 +8,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCbeqzz9ed6OIKVTzDoR77XySffV8XmL4U"/>
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
             android:name="uk.co.codeng.MainActivity"
@@ -36,7 +36,7 @@
     </application>
 
     <!-- Permissions -->
-
+import.meta.env.VITE_GOOGLE_MAPS_API_KEY
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-feature android:name="android.hardware.location.gps" />
