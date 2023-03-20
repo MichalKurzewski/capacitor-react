@@ -67,8 +67,8 @@ const MyMap: React.FC = () => {
         ref={mapRef}
         style={{
           display: "inline-block",
-          width: 675,
-          height: 600,
+          width: "100%",
+          height: 400,
         }}
       ></capacitor-google-map>
     </div>

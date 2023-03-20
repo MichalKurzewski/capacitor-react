@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    namespace 'uk.co.codeng'
     compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "uk.co.codeng"
