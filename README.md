@@ -30,6 +30,7 @@ npm install
 3. Create a .env file in the root directory of the project and add your Google Maps API key:
 ```bash
 VITE_GOOGLE_MAPS_API_KEY=your_api_key_here 
+```
 4. Run 
 ```bash
 npm run build
