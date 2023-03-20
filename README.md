@@ -43,7 +43,7 @@ npx cap sync
 ```
 5. update your mobile app manifests with apikey
 ```xml
-<meta-data android:name="com.google.android.geo.API_KEY" android:value="api-key-goes-here"/>
+<meta-data android:name="com.google.android.geo.API_KEY" android:value="your_api_key_here"/>
 ```
 and permissions:
 ```xml
