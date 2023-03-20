@@ -7,12 +7,18 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "ionic:build": "npm run build",
+    "ionic:serve": "npm run dev"
   },
   "dependencies": {
     "@capacitor/android": "^4.7.1",
     "@capacitor/core": "^4.7.1",
+    "@capacitor/geolocation": "^4.1.0",
+    "@capacitor/google-maps": "^4.5.0",
     "@capacitor/ios": "^4.7.1",
+    "@react-google-maps/api": "^2.18.1",
+    "@types/google.maps": "^3.52.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
