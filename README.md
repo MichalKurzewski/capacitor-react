@@ -2,6 +2,11 @@
 
 This project is a mobile application built with Capacitor, React, and TypeScript for tracking and displaying locations on Google Maps.
 
+Capacitor docs and example:
+- https://capacitorjs.com/docs/apis/google-maps
+- https://capacitorjs.com/docs/apis/geolocation
+
+
 ## Features
 
 - Real-time location tracking
@@ -14,7 +19,7 @@ To run this project, you need the following:
 - Node.js (version 14.0 or higher)
 - npm (version 6.0 or higher)
 - Capacitor CLI (version 3.0 or higher)
-- A valid Google Maps API key
+- A valid Google Maps API key: https://developers.google.com/maps/documentation/android-sdk/overview?hl=en
 
 ## Installation
 
