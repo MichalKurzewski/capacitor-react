@@ -1,11 +1,21 @@
 import { GoogleMap } from "@capacitor/google-maps";
 import { useEffect, useRef, useState } from "react";
 import { Geolocation, PositionOptions, Position } from "@capacitor/geolocation";
+import Page from "./Page";
 
-const MapTrackingComponent: React.FC = () => {
-  const mapRef = useRef<HTMLElement>();
+const MapPage: React.FC = (): JSX.Element => {
+  return (
+    <Page title="Map Tracker">
+      <MapTrackingComponent />
+    </Page>
+  );
+};
+
+const MapTrackingComponent: React.FC = (): JSX.Element => {
+  const mapRef = useRef<HTMLElement>(null);
   const [position, setPosition] = useState<Position | null>(null);
   const [map, setMap] = useState<GoogleMap | null>(null);
+  const [timeStamp, setTimestamp] = useState<string>(new Date().toJSON());
 
   useEffect(() => {
     async function createMap() {
@@ -23,25 +33,50 @@ const MapTrackingComponent: React.FC = () => {
           zoom: 15,
         },
       });
+
       setMap(map);
     }
+
+    const destroyMap = async () => {
+      await map?.destroy();
+    };
+    createMap();
+
+    return () => {
+      destroyMap();
+      setMap(null);
+    };
+  }, []);
+
+  useEffect(() => {
     const positionOptions: PositionOptions = {
       enableHighAccuracy: true,
-      timeout: 10000,
-      maximumAge: 0,
+      timeout: 1000,
+      maximumAge: 1000,
     };
+
     const setWatch = async () => {
-      await Geolocation.watchPosition(positionOptions, (position) => {
+      return await Geolocation.watchPosition(positionOptions, (position) => {
         setPosition(position);
       });
     };
-    createMap();
-    setWatch();
+
+    const settedWatchId = setWatch();
+    const unWatch = async () => {
+      const watchId = await settedWatchId;
+      if (watchId !== null) {
+        Geolocation.clearWatch({ id: watchId });
+      }
+    };
+    return () => {
+      unWatch();
+    };
   }, []);
 
   useEffect(() => {
     async function updateMap() {
       if (!mapRef.current || !position) return;
+      setTimestamp(new Date().toJSON());
       await map?.setCamera({
         coordinate: {
           lat: position.coords.latitude,
@@ -59,10 +94,11 @@ const MapTrackingComponent: React.FC = () => {
     if (position && map) {
       updateMap();
     }
+    return () => {};
   }, [position, map]);
 
   return (
-    <div className="component-wrapper">
+    <>
       <capacitor-google-map
         ref={mapRef}
         style={{
@@ -71,8 +107,10 @@ const MapTrackingComponent: React.FC = () => {
           height: 400,
         }}
       ></capacitor-google-map>
-    </div>
+
+      <div className="m-3">Last update: {timeStamp}</div>
+    </>
   );
 };
 
-export default MapTrackingComponent;
+export default MapPage;
