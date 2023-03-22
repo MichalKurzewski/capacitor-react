@@ -10,7 +10,7 @@ const DogLottie = () => {
   };
   return (
     <div
-      className="relative div-item cursor-pointer"
+      className="cursor-pointer"
       onClick={handleClickLottie}
       onMouseLeave={() => playerRef.current?.setLoop(false)}
     >

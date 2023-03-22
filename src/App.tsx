@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import AppContent from "./AppContent";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -26,7 +26,7 @@ setupIonicReact({
 function App(): JSX.Element {
   return (
     <IonApp>
-      <NavBar />
+      <AppContent />
     </IonApp>
   );
 }

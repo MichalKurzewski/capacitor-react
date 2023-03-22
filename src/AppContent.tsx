@@ -9,12 +9,15 @@ import {
 import { Redirect, Route } from "react-router";
 import { mapOutline, homeOutline, gameControllerOutline } from "ionicons/icons";
 import { IonReactRouter } from "@ionic/react-router";
-import HomePage from "./components/pages/HomePage";
 import React, { Suspense } from "react";
+import Page from "./components/pages/Page";
+import LoadingLottie from "./components/molecules/LoadingLottie";
 
-const NavBar: React.FC = (): JSX.Element => {
+const AppContent: React.FC = (): JSX.Element => {
+  const HomePage = React.lazy(() => import("./components/pages/HomePage"));
   const MapPage = React.lazy(() => import("./components/pages/MapPage"));
   const GamePage = React.lazy(() => import("./components/pages/GamePage"));
+
   return (
     <IonReactRouter>
       <IonTabs>
@@ -25,7 +28,15 @@ const NavBar: React.FC = (): JSX.Element => {
 
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
-          <Route path="/home" render={() => <HomePage />} exact={true} />
+          <Route
+            path="/home"
+            render={() => (
+              <SuspendedRoute>
+                <HomePage />
+              </SuspendedRoute>
+            )}
+            exact={true}
+          />
           <Route
             path="/map"
             render={() => (
@@ -66,12 +77,25 @@ const NavBar: React.FC = (): JSX.Element => {
   );
 };
 
-export default NavBar;
+export default AppContent;
+
 interface IItemProps {
   children?: string | JSX.Element | JSX.Element[];
 }
-const SuspendedRoute: React.FC<IItemProps> = (
+export const SuspendedRoute: React.FC<IItemProps> = (
   props: IItemProps
 ): JSX.Element => {
-  return <Suspense fallback={<div>Loading...</div>}>{props.children}</Suspense>;
+  return (
+    <Suspense
+      fallback={
+        <Page title="Loading">
+          <div className="flex items-center justify-center h-full">
+            <LoadingLottie />
+          </div>
+        </Page>
+      }
+    >
+      {props.children}
+    </Suspense>
+  );
 };
