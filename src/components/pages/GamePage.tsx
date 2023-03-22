@@ -1,3 +1,4 @@
+import GameLottie from "../molecules/GameLottie";
 import Page from "./Page";
 
 const GamePage = () => (
@@ -10,7 +11,7 @@ const GamePage = () => (
         height: "100%",
       }}
     >
-      Game
+      <GameLottie />
     </div>
   </Page>
 );

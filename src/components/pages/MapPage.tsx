@@ -11,7 +11,7 @@ const MapPage: React.FC = (): JSX.Element => {
   );
 };
 
-const MapTrackingComponent: React.FC = (): JSX.Element => {
+export const MapTrackingComponent: React.FC = (): JSX.Element => {
   const mapRef = useRef<HTMLElement>(null);
   const [position, setPosition] = useState<Position | null>(null);
   const [map, setMap] = useState<GoogleMap | null>(null);
@@ -103,8 +103,9 @@ const MapTrackingComponent: React.FC = (): JSX.Element => {
         ref={mapRef}
         style={{
           display: "inline-block",
+          height: "100%",
           width: "100%",
-          height: 400,
+          border: "red solid 1px",
         }}
       ></capacitor-google-map>
 

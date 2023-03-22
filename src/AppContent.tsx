@@ -12,10 +12,13 @@ import { IonReactRouter } from "@ionic/react-router";
 import React, { Suspense } from "react";
 import Page from "./components/pages/Page";
 import LoadingLottie from "./components/molecules/LoadingLottie";
+// import MapPage, { MapTrackingComponent } from "./components/pages/MapPage";
 
 const AppContent: React.FC = (): JSX.Element => {
   const HomePage = React.lazy(() => import("./components/pages/HomePage"));
-  const MapPage = React.lazy(() => import("./components/pages/MapPage"));
+  const MapTrackingComponent = React.lazy(
+    () => import("./components/pages/MapPage")
+  );
   const GamePage = React.lazy(() => import("./components/pages/GamePage"));
 
   return (
@@ -41,7 +44,8 @@ const AppContent: React.FC = (): JSX.Element => {
             path="/map"
             render={() => (
               <SuspendedRoute>
-                <MapPage />
+                {/* <MapPage /> */}
+                <MapTrackingComponent />
               </SuspendedRoute>
             )}
             exact={true}
