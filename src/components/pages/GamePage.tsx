@@ -3,14 +3,7 @@ import Page from "./Page";
 
 const GamePage = () => (
   <Page title="Game">
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100%",
-      }}
-    >
+    <div className="flex items-center justify-center h-full">
       <GameLottie />
     </div>
   </Page>

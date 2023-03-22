@@ -99,17 +99,19 @@ export const MapTrackingComponent: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <capacitor-google-map
-        ref={mapRef}
-        style={{
-          display: "inline-block",
-          height: "100%",
-          width: "100%",
-          border: "red solid 1px",
-        }}
-      ></capacitor-google-map>
+      <div className="h-full w-full flex flex-col">
+        <capacitor-google-map
+          ref={mapRef}
+          style={{
+            display: "inline-block",
+            height: "100%",
+            width: "100%",
+            border: "red solid 1px",
+          }}
+        />
 
-      <div className="m-3">Last update: {timeStamp}</div>
+        <div className="m-3">Last update: {timeStamp}</div>
+      </div>
     </>
   );
 };
