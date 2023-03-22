@@ -73,7 +73,7 @@ const AppContent: React.FC = (): JSX.Element => {
 
           <IonTabButton tab="game" href="/game">
             <IonIcon icon={gameControllerOutline} />
-            <IonLabel>Charades</IonLabel>
+            <IonLabel>Game</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
