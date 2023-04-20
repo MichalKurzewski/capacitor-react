@@ -55,7 +55,7 @@ npx cap sync
 <meta-data android:name="com.google.android.geo.API_KEY" android:value="your_api_key_here"/>
 ```
 
-and permissions:
+and permissions for android/app/src/main/AndroidManifest.xml:
 
 ```xml
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -63,6 +63,23 @@ and permissions:
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.location.gps" />
+```
+
+descriptions for ios/App/App/Info.plist:
+
+```xml
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to access your location</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to access your location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to access your location</string>
+	<key>NSCameraUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to access your camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to access your photo library</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>$(PRODUCT_NAME) would like to add photos to your photo library</string>
 ```
 
 6. run on android:

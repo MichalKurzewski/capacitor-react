@@ -7,16 +7,23 @@ import {
   IonRouterOutlet,
 } from "@ionic/react";
 import { Redirect, Route } from "react-router";
-import { mapOutline, homeOutline, gameControllerOutline } from "ionicons/icons";
+import {
+  mapOutline,
+  homeOutline,
+  gameControllerOutline,
+  cameraOutline,
+} from "ionicons/icons";
 import { IonReactRouter } from "@ionic/react-router";
 import React, { Suspense } from "react";
 import Page from "./components/pages/Page";
 import LoadingLottie from "./components/molecules/LoadingLottie";
 import { MapTrackingComponent } from "./components/pages/MapPage";
+import PhotoPage from "./components/pages/PhotoPage";
 
 const AppContent: React.FC = (): JSX.Element => {
   const HomePage = React.lazy(() => import("./components/pages/HomePage"));
   const GamePage = React.lazy(() => import("./components/pages/GamePage"));
+
 
   return (
     <IonReactRouter>
@@ -51,6 +58,15 @@ const AppContent: React.FC = (): JSX.Element => {
             )}
             exact={true}
           />
+          <Route
+            path="/photo"
+            render={() => (
+    
+                <PhotoPage />
+       
+            )}
+            exact={true}
+          />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
@@ -58,6 +74,7 @@ const AppContent: React.FC = (): JSX.Element => {
             <IonIcon icon={homeOutline} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
+
           <IonTabButton tab="map" href="/map">
             <IonIcon icon={mapOutline} />
             <IonLabel>Map</IonLabel>
@@ -66,6 +83,11 @@ const AppContent: React.FC = (): JSX.Element => {
           <IonTabButton tab="game" href="/game">
             <IonIcon icon={gameControllerOutline} />
             <IonLabel>Game</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton tab="photo" href="/photo">
+            <IonIcon icon={cameraOutline} />
+            <IonLabel>Photo</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
