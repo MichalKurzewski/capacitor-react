@@ -8,7 +8,6 @@ import {
 } from "@capacitor/camera";
 import { isPlatform } from "@ionic/react";
 import { Filesystem, Directory } from "@capacitor/filesystem";
-import { Capacitor } from "@capacitor/core";
 import { Preferences } from "@capacitor/preferences";
 
 const PHOTOS_PREF_KEY = "photos";
@@ -71,7 +70,7 @@ const usePhotoGallery = () => {
       if (isPlatform("hybrid")) {
         return {
           filePath: savedFile.uri,
-          webViewPath: Capacitor.convertFileSrc(savedFile.uri),
+          webViewPath: photo.webPath,
         };
       }
       return {

@@ -5,25 +5,28 @@ import { cameraOutline } from "ionicons/icons";
 import usePhotoGallery from "../../hooks/usePhotoGallery";
 import { ImageCropper } from "../molecules/ImageCropper";
 import PhotoGallery from "../molecules/PhotoGallery";
+import { Photo } from "@capacitor/camera";
 
 const PhotoPage = () => {
   const { photos, takePhoto, savePhoto, deletePhoto } = usePhotoGallery();
-  const [selectedImage, setSelectedImage] = useState<string>();
+  const [imgSrc, setImgSrc] = useState<string>();
+  const [originalPhoto, setOriginalPhoto] = useState<Photo | null>(null);
 
   const handleImageCrop = (croppedImage: string) => {
-    // Handle the cropped image (e.g., save it or display it)
     console.log("Cropped image:", croppedImage);
-    setSelectedImage(undefined);
+    savePhoto({ ...originalPhoto!, webPath: croppedImage});
+    setImgSrc(undefined);
   };
 
   const handleCancelCrop = () => {
-    setSelectedImage(undefined);
+    setImgSrc(undefined);
   };
 
   const handleTakePhoto = async () => {
     const photo = await takePhoto().catch((err) => console.error(err.message));
     if (photo) {
-      await savePhoto(photo);
+      setImgSrc(photo.webPath);
+      setOriginalPhoto(photo);
     }
   };
 
@@ -36,9 +39,9 @@ const PhotoPage = () => {
         </IonFabButton>
       </IonFab>
       <div className="flex items-center justify-center h-full">
-        {selectedImage && (
+        {imgSrc && (
           <ImageCropper
-            imageSrc={selectedImage}
+            imageSrc={imgSrc}
             onCrop={handleImageCrop}
             onCancel={handleCancelCrop}
           />

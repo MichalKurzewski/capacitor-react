@@ -134,6 +134,7 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
         />
       </ReactCrop>
       <button
+        className="btn"
         onClick={() => {
           if (croppedImage) {
             onCrop(croppedImage);
@@ -142,7 +143,9 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
       >
         Crop
       </button>
-      <button onClick={onCancel}>Cancel</button>
+      <button className="btn m-2" onClick={onCancel}>
+        Cancel
+      </button>
     </div>
   );
 };
