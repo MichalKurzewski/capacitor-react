@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
 import Page from "./Page";
 import { cameraOutline } from "ionicons/icons";
 import usePhotoGallery from "../../hooks/usePhotoGallery";
-import {ImageCropper} from "../molecules/ImageCropper";
+import { ImageCropper } from "../molecules/ImageCropper";
+import PhotoGallery from "../molecules/PhotoGallery";
 
 const PhotoPage = () => {
-  const { takePhoto } = usePhotoGallery();
+  const { photos, takePhoto, savePhoto, deletePhoto } = usePhotoGallery();
   const [selectedImage, setSelectedImage] = useState<string>();
 
   const handleImageCrop = (croppedImage: string) => {
@@ -20,12 +21,15 @@ const PhotoPage = () => {
   };
 
   const handleTakePhoto = async () => {
-    const photo = await takePhoto();
-    setSelectedImage(photo);
+    const photo = await takePhoto().catch((err) => console.error(err.message));
+    if (photo) {
+      await savePhoto(photo);
+    }
   };
 
   return (
     <Page title="Photo">
+      <PhotoGallery photos={photos} deletePhoto={deletePhoto} />
       <IonFab vertical="top" horizontal="end" slot="fixed">
         <IonFabButton onClick={handleTakePhoto}>
           <IonIcon icon={cameraOutline} />
