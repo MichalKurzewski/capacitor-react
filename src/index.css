@@ -4,6 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
+.btn {
+  @apply bg-pastel text-white py-2 px-4 rounded-md shadow-delicate hover:bg-pastel-hover hover:scale-105 active:bg-pastel-active transition-all duration-200 ease-s-curve transform focus:outline-none
+}
 .bg-color {
   @apply bg-cover bg-fixed  bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] dark:from-slate-700 dark:via-slate-800 dark:to-slate-900 from-zinc-50 via-zinc-200 to-zinc-300 txt-color;
 }
@@ -17,5 +20,9 @@
 }
 
 .absolute-center {
-  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  text-center;
+  @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center;
+}
+
+.ReactCrop__crop-selection {
+  @apply border-4 border-red-600 rounded-lg
 }

@@ -19,11 +19,13 @@ import "@ionic/react/css/display.css";
 import "./theme/variables.css";
 import { IonApp } from "@ionic/react";
 import { setupIonicReact } from "@ionic/react";
+import {defineCustomElements} from '@ionic/pwa-elements/loader';
 import "./index.css";
 setupIonicReact({
   mode: "md",
 });
 function App(): JSX.Element {
+  defineCustomElements(window);
   return (
     <IonApp>
       <AppContent />

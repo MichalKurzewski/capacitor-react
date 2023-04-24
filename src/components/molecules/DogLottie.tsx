@@ -1,4 +1,4 @@
-import animationData from "../../assets/lotties/dog.json";
+import animationData from "../../assets/lotties/doggie1.json";
 import { Player } from "@lottiefiles/react-lottie-player";
 import { useRef } from "react";
 
