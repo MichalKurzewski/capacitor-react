@@ -26,7 +26,3 @@
 .ReactCrop__crop-selection {
   @apply border-4 border-red-600 rounded-lg
 }
-
-.ReactCrop__drag-handle {
-  @apply opacity-0
-}

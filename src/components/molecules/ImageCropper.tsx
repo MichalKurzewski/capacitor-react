@@ -1,16 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReactCrop, { Crop, PixelCrop } from "react-image-crop";
-import { useGesture } from "react-use-gesture";
 
 import "react-image-crop/dist/ReactCrop.css";
+import { IImageCropperProps } from "../../types/ImageCropper";
 
-interface ImageCropperProps {
-  imageSrc: string;
-  onCrop: (croppedImage: string) => void;
-  onCancel: () => void;
-}
-
-export const ImageCropper: React.FC<ImageCropperProps> = ({
+export const ImageCropper: React.FC<IImageCropperProps> = ({
   imageSrc,
   onCrop,
   onCancel,
@@ -98,40 +92,16 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
     setCroppedImage(croppedDataURL);
   };
 
-  const bind = useGesture({
-    onPinch: ({ event, da: [d, a], vdva: [vd, va], origin: [x, y], memo }) => {
-      event.preventDefault();
-
-      if (!memo) {
-        memo = { initialWidth: crop.width, initialHeight: crop.height };
-      }
-
-      const newWidth = Math.max(50, memo.initialWidth * d);
-      const newHeight = Math.max(50, memo.initialHeight * d);
-
-      setCrop({
-        ...crop,
-        width: newWidth,
-        height: newHeight,
-      });
-
-      return memo;
-    },
-  });
   return (
     <div>
       <ReactCrop
+        aspect={1}
+        circularCrop
         crop={crop}
         onChange={(newCrop: Crop) => setCrop(newCrop)}
         onComplete={handleCropComplete}
       >
-        <img
-          src={imageSrc}
-          alt="cropped"
-          ref={imageRef}
-          style={{ display: "block" }}
-          {...bind()}
-        />
+        <img src={imageSrc} alt="cropped" ref={imageRef} />
       </ReactCrop>
       <button
         className="btn"

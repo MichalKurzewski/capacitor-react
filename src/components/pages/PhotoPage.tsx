@@ -3,9 +3,10 @@ import { IonFab, IonFabButton, IonIcon } from "@ionic/react";
 import Page from "./Page";
 import { cameraOutline } from "ionicons/icons";
 import usePhotoGallery from "../../hooks/usePhotoGallery";
-import { ImageCropper } from "../molecules/ImageCropper";
+// import { ImageCropper } from "../molecules/ImageCropper";
 import PhotoGallery from "../molecules/PhotoGallery";
 import { Photo } from "@capacitor/camera";
+import ImageCropperEasy from "../molecules/ImageCropperEasy";
 
 const PhotoPage = () => {
   const { photos, takePhoto, savePhoto, deletePhoto } = usePhotoGallery();
@@ -14,7 +15,7 @@ const PhotoPage = () => {
 
   const handleImageCrop = (croppedImage: string) => {
     console.log("Cropped image:", croppedImage);
-    savePhoto({ ...originalPhoto!, webPath: croppedImage});
+    savePhoto({ ...originalPhoto!, webPath: croppedImage });
     setImgSrc(undefined);
   };
 
@@ -40,7 +41,7 @@ const PhotoPage = () => {
       </IonFab>
       <div className="flex items-center justify-center h-full">
         {imgSrc && (
-          <ImageCropper
+          <ImageCropperEasy
             imageSrc={imgSrc}
             onCrop={handleImageCrop}
             onCancel={handleCancelCrop}
