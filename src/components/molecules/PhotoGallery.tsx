@@ -36,7 +36,7 @@ const PhotoGallery: React.FC<Props> = ({ photos, deletePhoto }) => {
       <IonRow>
         {photos.map((photo, idx) => (
           <IonCol size="6" key={idx}>
-            <IonCard>
+            <IonCard className="rounded-full">
               <IonFab vertical="bottom" horizontal="center">
                 <IonFabButton
                   onClick={() => confirmDelete(photo.filePath)}
@@ -46,7 +46,6 @@ const PhotoGallery: React.FC<Props> = ({ photos, deletePhoto }) => {
                   <IonIcon icon={trash} color="danger"></IonIcon>
                 </IonFabButton>
               </IonFab>
-
               <IonImg src={photo.webViewPath} />
             </IonCard>
           </IonCol>
